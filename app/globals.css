@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-page font-sans text-ink antialiased;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+  :focus-visible { outline: 2px solid #2E7D9A; outline-offset: 2px; border-radius: 6px; }
+  ::selection { background: #E6EFE7; }
+}
+
+@layer components {
+  .card {
+    @apply rounded-card border border-line bg-white;
+    box-shadow: 0 1px 2px rgba(29, 42, 31, 0.04);
+    transition: box-shadow 160ms ease, transform 160ms ease, border-color 160ms ease;
+  }
+  .card-hover:hover { box-shadow: 0 6px 18px rgba(29, 42, 31, 0.08); transform: translateY(-1px); border-color: #D3DBCE; }
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-ctl px-4 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60;
+    transition: background-color 150ms ease, color 150ms ease, transform 120ms ease, box-shadow 150ms ease;
+  }
+  .btn:active:not(:disabled) { transform: scale(0.98); }
+  .btn-icon {
+    @apply inline-flex h-11 min-w-[44px] items-center justify-center rounded-ctl px-2 text-muted hover:bg-white hover:text-ink;
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+  .nav-link { @apply relative flex min-h-[44px] items-center justify-center gap-3 rounded-ctl px-3 text-sm font-medium lg:justify-start; transition: background-color 150ms ease, color 150ms ease; }
+  .input {
+    @apply min-h-[44px] w-full rounded-ctl border border-line bg-white px-3 text-[16px] text-ink placeholder:text-muted/70;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+  .input:focus { outline: none; border-color: #2E7D9A; box-shadow: 0 0 0 3px rgba(46, 125, 154, 0.15); }
+  .label { @apply mb-1 block text-sm font-medium text-ink; }
+  .field-error { @apply mt-1 text-sm font-medium text-danger; }
+  .skeleton {
+    background: linear-gradient(90deg, #EEF2EA 0%, #F7F9F5 50%, #EEF2EA 100%);
+    background-size: 800px 100%;
+    @apply animate-shimmer;
+  }
+  .table-wrap { @apply -mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0; }
+  .data-table { @apply w-full text-left text-sm; }
+  .data-table th { @apply whitespace-nowrap border-b border-line px-3 py-2 text-xs font-semibold uppercase tracking-wide text-muted; }
+  .data-table td { @apply border-b border-line/70 px-3 py-2.5 align-middle tabular-nums; }
+  .data-table tbody tr { transition: background-color 120ms ease; }
+  .data-table tbody tr:hover { background: #F8FAF6; }
+  .tab {
+    @apply relative inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-ctl px-3.5 text-sm font-semibold text-muted;
+    transition: color 150ms ease, background-color 150ms ease;
+  }
+  .tab:hover { @apply bg-white text-ink; }
+  .tab[aria-selected='true'] { @apply bg-white text-primary shadow-sm; }
+}
+
+/* Stacked cards for tables under 480 px. */
+@media (max-width: 479px) {
+  .stack-table thead { display: none; }
+  .stack-table tr { display: block; border: 1px solid #E3E8DF; border-radius: 12px; margin-bottom: 10px; padding: 6px 4px; background: #fff; }
+  .stack-table td { display: flex; justify-content: space-between; gap: 12px; border: 0; padding: 6px 10px; text-align: right; }
+  .stack-table td::before { content: attr(data-label); font-weight: 600; color: #5B6B5E; text-align: left; font-size: 12px; }
+}
+
+.leaflet-container { font: inherit; background: #E9EEE5; border-radius: 12px; }
+.leaflet-control-attribution { font-size: 10px; }
+.leaflet-tooltip { border-radius: 8px; border-color: #E3E8DF; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; }
+  main { padding: 0 !important; max-width: none !important; }
+  .card { box-shadow: none; break-inside: avoid; }
+}

@@ -1,0 +1,12 @@
+node_modules
+.next
+.env
+.env.local
+data/pgdata
+data/raw/ceda/*.csv
+playwright-report
+test-results
+*.tsbuildinfo
+
+.vercel
+solara.zip

@@ -1,0 +1,10 @@
+node_modules
+.next
+data/pgdata
+data/raw/ceda/*.csv
+.env
+.env.local
+test-results
+playwright-report
+solara.zip
+*.tsbuildinfo
